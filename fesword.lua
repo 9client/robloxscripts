@@ -77,7 +77,7 @@ function setup_chr(chrr)
     arm_weld.Parent = rightarm
     arm_weld.Part0 = rightarm
     arm_weld.Part1 = sword_model.PrimaryPart
-    arm_weld.C0 = CFrame.new(0,-.8,-3.8) * CFrame.Angles(0,-math.pi*.5,0)
+    arm_weld.C0 = CFrame.new(0,-.8,-3.8) * CFrame.Angles(0,-math.pi*.5,0) --hi
 
     for _,v in pairs(chr:GetChildren()) do
         if v:IsA("Accoutrement") or v:IsA("Clothing") or v:IsA("CharacterMesh") or v:IsA("ShirtGraphic") or v:IsA("BodyColors") then
