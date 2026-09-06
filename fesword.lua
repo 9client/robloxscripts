@@ -1,12 +1,25 @@
 local FALLBACK_NAME = "fatigue"
 
 local plr = game.Players:FindFirstChild(FALLBACK_NAME)
+local plrgui = plr.PlayerGui
 local chr
 local rightarm
 
-function setup_chr()
-    chr = plr.Character
+local active_hint
+function inform(msg,t)
+    if active_hint then
+        active_hint:Destroy()
+    end
+    active_hint.Text = msg
+    active_hint.Parent = plrgui
+    game.Debris:AddItem(active_hint, t)
+end
+
+function setup_chr(chrr)
+
+    chr = chrr or plr.Character
     rightarm = chr:FindFirstChild("Right Arm") or chr:WaitForChild("Right Arm")
+
     local sword_model = Instance.new("Model")
     sword_model.Parent = workspace
     local sword_p1 = Instance.new("Part")
@@ -48,6 +61,7 @@ function setup_chr()
     sword_p5.Size = Vector3.new(1.4, 0.4, 0.2)
     sword_p5.Parent = sword_model
     sword_model.PrimaryPart = sword_p1
+
     for _,v in pairs(sword_model:GetChildren()) do
         if v ~= sword_model.PrimaryPart then
             local weld = Instance.new("Weld")
@@ -57,10 +71,18 @@ function setup_chr()
             weld.Part1 = v
         end
     end
+
     local arm_weld = Instance.new("Weld")
     arm_weld.Parent = rightarm
     arm_weld.Part0 = rightarm
     arm_weld.Part1 = sword_model.PrimaryPart
     arm_weld.C0 = CFrame.new(0,-.8,-3.8) * CFrame.Angles(0,-math.pi*.5,0)
+
 end
-setup_chr()
+
+if plr.Character then
+    setup_chr()
+end
+plr.CharacterAdded:connect(setup_chr)
+
+inform("fe sword loaded",4)
