@@ -1,3 +1,5 @@
 for _,plr in pairs(game.Players:GetPlayers()) do
-    plr:Kick("shutting down server!")
+    local succ,err = pcall(function()
+        plr:Kick("shutting down server!")
+    end)
 end
