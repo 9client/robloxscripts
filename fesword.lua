@@ -79,11 +79,20 @@ function setup_chr(chrr)
     arm_weld.Part1 = sword_model.PrimaryPart
     arm_weld.C0 = CFrame.new(0,-.8,-3.8) * CFrame.Angles(0,-math.pi*.5,0)
 
+    local body_colors = chr:FindFirstChild("Body Colors")
+    if body_colors then
+        body_colors.HeadColor = BrickColor.new("Black")
+        body_colors.TorsoColor = BrickColor.new("Black")
+        body_colors.LeftArmColor = BrickColor.new("Black")
+        body_colors.RightArmColor = BrickColor.new("Black")
+        body_colors.LeftLegColor = BrickColor.new("Black")
+        body_colors.RightLegColor = BrickColor.new("Black")
+    end
+
 end
 
 if plr.Character then
     setup_chr()
 end
-plr.CharacterAdded:connect(setup_chr)
 
 inform("fe sword loaded",4)
