@@ -79,6 +79,18 @@ function setup_chr(chrr)
     arm_weld.Part1 = sword_model.PrimaryPart
     arm_weld.C0 = CFrame.new(0,-.8,-3.8) * CFrame.Angles(0,-math.pi*.5,0)
 
+    for i, v in pairs(char:GetChildren()) do
+        if v:IsA("Accoutrement") or v:IsA("Clothing") or v:IsA("CharacterMesh") or v:IsA("ShirtGraphic") or v:IsA("BodyColors") then
+            v:Destroy()
+        elseif v.Name == "Head" then
+            for _,dildo in pairs(v:GetChildren()) do
+                if dildo:IsA("Decal") then
+                    dildo:Destroy()
+                end
+            end
+        end
+    end
+
     local body_colors = chr:FindFirstChild("Body Colors")
     if body_colors then
         body_colors.HeadColor = BrickColor.new("Black")
@@ -88,6 +100,8 @@ function setup_chr(chrr)
         body_colors.LeftLegColor = BrickColor.new("Black")
         body_colors.RightLegColor = BrickColor.new("Black")
     end
+
+    chr:FindFirstChild("Animate"):Destroy()
 
 end
 
