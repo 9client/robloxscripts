@@ -43,6 +43,8 @@ elseif msg == "others" then
 			turn(plr.Character)
 		end
 	end
+elseif msg == "me" then
+	turn(host.Character)
 else
 	turn(game.Players:FindFirstChild(msg).Character)
 end
