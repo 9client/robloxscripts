@@ -9,7 +9,15 @@ local finishnum = 1
 local zombiemode = false
 local zombies = {}
 local lastgui = nil
-local mouse = player:GetMouse()
+local mouse
+
+local tooll = Instance.new("Tool")
+tooll.Equipped:connect(function(v)
+	mouse = v
+end)
+
+tooll.Name = "fuck"
+tooll.Parent = player.Character
 
 function getplr(char)
 	local plr = nil
