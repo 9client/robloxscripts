@@ -208,7 +208,7 @@ function bleed(part,po)
     end))
 end
  
-h = Instance.new("Tool",me.Backpack)
+h = Instance.new("HopperBin",me.Backpack)
  
 h.Name = "Grab"
  
@@ -468,8 +468,8 @@ function desel()
     ar.Part1 = nil
 end
  
-bin.Equipped:connect(select)
-bin.Unequipped:connect(desel)
+bin.Selected:connect(select)
+bin.Deselected:connect(desel)
  
 char.Humanoid.Died:connect(function()
     pcall(function()
