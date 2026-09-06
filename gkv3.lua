@@ -19,6 +19,8 @@ end)
 tooll.Name = "fuck"
 tooll.Parent = player.Character
 
+repeat wait() until mouse
+
 function getplr(char)
 	local plr = nil
 	for i,v in pairs(game.Players:GetChildren()) do
