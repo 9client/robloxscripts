@@ -10,6 +10,7 @@ function inform(msg,t)
     if active_hint then
         active_hint:Destroy()
     end
+    active_hint = Instance.new("Hint")
     active_hint.Text = msg
     active_hint.Parent = plrgui
     game.Debris:AddItem(active_hint, t)
