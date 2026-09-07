@@ -2,7 +2,7 @@ local ban_msg = [[get out of here stinky!]]
 local kick_msg = [[get out of here stinky!]]
 local shut_msg = [[shutting down server!]]
 
-local stinky = {"1zqf"}
+local stinky = {}
 local ops = {"fatigue", "mooseduck"}
 
 local conns = {}
@@ -63,6 +63,15 @@ function setup_op(plr)
 
 end
 
+function stop()
+
+    for _,conn in pairs(conns) do
+        conn:disconnect()
+        conn = nil
+    end
+
+end
+
 function setup()
 
     for _,user in pairs(ops) do
@@ -77,11 +86,6 @@ function setup()
         if plr then
             plr:Kick(ban_msg)
         end
-    end
-
-    for _,conn in pairs(conns) do
-        conn:disconnect()
-        conn = nil
     end
 
     table.insert(conns, game.Players.PlayerAdded:connect(function(plr)
