@@ -20,30 +20,57 @@ function split(inputstr, sep)
     return t
 end
 
+function kill_people(plr)
+
+    local chr = plr and plr.Character
+    local hum = chr and chr:FindFirstChild("Humanoid")
+    if hum then
+        hum.Health = 0
+    elseif chr then
+        chr:BreakJoints()
+    end
+
+end
+
 local cmds = {
     shutdown = function(sender, arg)
-        local plr = game.Players:FindFirstChild(arg)
-        if plr then
-            plr:Kick(shut_msg)
+        if arg then
+            local plr = game.Players:FindFirstChild(arg)
+            if plr then
+                plr:Kick(shut_msg)
+            end
         end
     end,
-    kick = function(sender, arg)
+    kick = function(sender)
         for _,plr in pairs(game.Players:GetPlayers()) do
             pcall(plr.Kick. plr, kick_msg)
         end
     end,
     ban = function(sender, arg)
-        local plr = game.Players:FindFirstChild(arg)
-        if plr then
-            plr:Kick(ban_msg)
-            table.insert(stinky, plr.Name)
+        if arg then
+            local plr = game.Players:FindFirstChild(arg)
+            if plr then
+                plr:Kick(ban_msg)
+                table.insert(stinky, plr.Name)
+            end
+        end
+    end,
+    kill = function(sender, arg)
+        if arg == "all" then
+            for _,plr in pairs(game.Players:GetPlayers()) do
+                kill_people(plr)
+            end
+        elseif arg then
+            kill_people(game.Players:FindFirstChild(arg))
         end
     end,
     op = function(sender, arg)
-        local plr = game.Players:FindFirstChild(arg)
-        if plr then
-            table.insert(stinky, arg)
-            setup_op(plr)
+        if arg then
+            local plr = game.Players:FindFirstChild(arg)
+            if plr then
+                table.insert(stinky, arg)
+                setup_op(plr)
+            end
         end
     end,
 }
