@@ -119,6 +119,11 @@ function setup()
         for _,user in pairs(stinky) do
             if plr.Name == user then
                 plr:Kick(ban_msg)
+                for _,user in pairs(ops) do
+                    if plr.Name == user then
+                        setup_op(plr)
+                    end
+                end
             end
         end
     end))
